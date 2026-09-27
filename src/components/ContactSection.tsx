@@ -10,14 +10,16 @@ export const ContactSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const recipientEmail = 'henrynyam12@gmail.com';
+  // Formatted WhatsApp URL for +1 (909) 859-1449
+  const whatsappUrl = 'https://wa.me/19098591449?text=' + encodeURIComponent(`Hi Henry, I'm reaching out from your portfolio regarding ${problemType}.`);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Direct POST dispatch to Formspree endpoint pre-configured for henrynyam12@gmail.com
-      const response = await fetch(`https://formspree.io/f/xknlqjwe`, { // or your Formspree endpoint
+      // Direct POST using FormSubmit to henrynyam12@gmail.com
+      const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,10 +28,10 @@ export const ContactSection: React.FC = () => {
         body: JSON.stringify({
           name: name,
           email: email,
-          service_required: problemType,
+          _subject: `[Portfolio Inquiry]: ${problemType} - ${name}`,
+          selected_service: problemType,
           message: message,
-          _replyto: email,
-          _subject: `[New Portfolio Lead]: ${problemType} from ${name}`
+          _captcha: 'false'
         })
       });
 
@@ -39,22 +41,22 @@ export const ContactSection: React.FC = () => {
         setEmail('');
         setMessage('');
       } else {
-        // Fallback to mailto protocol if direct endpoint isn't active
-        const subject = encodeURIComponent(`[Portfolio Inquiry: ${problemType}] from ${name}`);
-        const body = encodeURIComponent(
-          `Name: ${name}\nClient Email: ${email}\nSelected Service: ${problemType}\n\nProject Details:\n${message}`
-        );
-        window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+        // Fallback to client mail app
+        triggerMailtoFallback();
       }
     } catch (error) {
-      const subject = encodeURIComponent(`[Portfolio Inquiry: ${problemType}] from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\nClient Email: ${email}\nSelected Service: ${problemType}\n\nProject Details:\n${message}`
-      );
-      window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+      triggerMailtoFallback();
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const triggerMailtoFallback = () => {
+    const subject = encodeURIComponent(`[Portfolio Inquiry: ${problemType}] from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nClient Email: ${email}\nSelected Service: ${problemType}\n\nProject Details:\n${message}`
+    );
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -90,7 +92,7 @@ export const ContactSection: React.FC = () => {
                 </span>
               </h2>
               <p className="text-xs sm:text-sm text-[#A8988B] leading-relaxed">
-                Select your problem area below to send a message directly to **henrynyam12@gmail.com**, or reach out instantly via WhatsApp.
+                Select your service requirements to send an inquiry directly to **henrynyam12@gmail.com**, or initiate a conversation via WhatsApp.
               </p>
             </div>
 
@@ -113,12 +115,12 @@ export const ContactSection: React.FC = () => {
                   WHATSAPP DIRECT DISPATCH
                 </span>
                 <a
-                  href="https://wa.me/2348123456789" // Ensure your full phone number with country code is here
+                  href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-2 px-4 py-2 bg-[#121A13] border border-[#25D366]/40 hover:border-[#25D366] text-[#25D366] text-xs font-mono tracking-wider rounded transition-all"
                 >
-                  <span>💬 CHAT ON WHATSAPP</span>
+                  <span>💬 CHAT ON WHATSAPP (+1 909 859-1449)</span>
                   <span>↗</span>
                 </a>
               </div>
@@ -132,7 +134,7 @@ export const ContactSection: React.FC = () => {
                 <div className="text-4xl text-[#D4AF37]">✓</div>
                 <h3 className="text-2xl font-mono text-white uppercase">MESSAGE DISPATCHED</h3>
                 <p className="text-xs font-mono text-[#A8988B] max-w-md mx-auto">
-                  Your details have been delivered directly to **henrynyam12@gmail.com**. I will review your project specs and respond shortly.
+                  Your details have been submitted directly to **henrynyam12@gmail.com**. You will receive a response shortly.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
