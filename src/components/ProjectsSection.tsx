@@ -1,12 +1,12 @@
 // src/components/ProjectsSection.tsx
-import React from 'react';
-import { motion } from 'framer-motion';
-import ScrollStack, { ScrollStackItem } from './ScrollStack';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Project {
   number: string;
   title: string;
   category: string;
+  filterCategory: 'shopify' | 'marketing' | 'fullstack';
   description: string;
   githubUrl: string;
   mediaType: 'image' | 'video';
@@ -20,6 +20,7 @@ const projects: Project[] = [
     number: '01',
     title: 'CUSTOM LIQUID BUNDLE ARCHITECTURE',
     category: 'SHOPIFY / LIQUID DEVELOPMENT',
+    filterCategory: 'shopify',
     description: 'Engineered a custom Shopify theme featuring dynamic bundle builders, liquid section schemas, sub-second page loads, and real-time cart recalculations.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'video',
@@ -35,6 +36,7 @@ const projects: Project[] = [
     number: '02',
     title: 'HIGH-ROAS PAID MEDIA AD FUNNEL',
     category: 'GROWTH MARKETING / META & TIKTOK',
+    filterCategory: 'marketing',
     description: 'Structured full-funnel ad campaigns with targeted creative video hooks and landing page optimizations designed to maximize conversion rates.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'video',
@@ -50,6 +52,7 @@ const projects: Project[] = [
     number: '03',
     title: 'STOREFRONT SPEED & CHECKOUT ENGINE',
     category: 'E-COMMERCE PERFORMANCE',
+    filterCategory: 'shopify',
     description: 'Audited and optimized complex liquid scripts, third-party app payloads, and asset delivery to eliminate rendering bottlenecks.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -65,6 +68,7 @@ const projects: Project[] = [
     number: '04',
     title: 'ENTERPRISE DTC STOREFRONT',
     category: 'CUSTOM THEME & APP INTEGRATIONS',
+    filterCategory: 'fullstack',
     description: 'End-to-end custom Shopify storefront implementation equipped with dynamic filter sliders, subscription portal integrations, and automated customer workflows.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -80,6 +84,7 @@ const projects: Project[] = [
     number: '05',
     title: 'DYNAMIC PRODUCT CONFIGURATOR',
     category: 'SHOPIFY FRONTEND CUSTOMIZATION',
+    filterCategory: 'shopify',
     description: 'Built an interactive product variant builder allowing shoppers to customize item specifications directly on the store front end.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -95,6 +100,7 @@ const projects: Project[] = [
     number: '06',
     title: 'OMNICHANNEL EMAIL & RETENTION FUNNEL',
     category: 'KLAVIYO / AUTOMATION',
+    filterCategory: 'marketing',
     description: 'Designed and deployed multi-stage abandon cart and post-purchase email sequences synced with Meta custom audiences.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -110,6 +116,7 @@ const projects: Project[] = [
     number: '07',
     title: 'RETARGETING CREATIVE MATRIX',
     category: 'PAID SOCIAL / META ADS',
+    filterCategory: 'marketing',
     description: 'Crafted dynamic creative variations and ad copies optimized for middle and bottom-of-funnel retargeting audiences.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -125,6 +132,7 @@ const projects: Project[] = [
     number: '08',
     title: 'CUSTOM CART DRAWER & UPSELL SYSTEM',
     category: 'SHOPIFY LIQUID DEVELOPMENT',
+    filterCategory: 'shopify',
     description: 'Developed an slide-out cart drawer with dynamic progress bars for free shipping and inline cross-sell recommendations.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -140,6 +148,7 @@ const projects: Project[] = [
     number: '09',
     title: 'TIKTOK SCALING CAMPAIGN ARCHITECTURE',
     category: 'SHORT-FORM PAID MEDIA',
+    filterCategory: 'marketing',
     description: 'Executed high-volume video ad testing strategies on TikTok Ads Manager targeting impulse e-commerce buying behaviors.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -155,6 +164,7 @@ const projects: Project[] = [
     number: '10',
     title: 'HEADLESS SHOPIFY STOREFRONT ENGINE',
     category: 'FULL-STACK E-COMMERCE',
+    filterCategory: 'fullstack',
     description: 'Constructed a custom React-based storefront communicating directly with the Shopify GraphQL Storefront API.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -170,6 +180,7 @@ const projects: Project[] = [
     number: '11',
     title: 'MULTI-CURRENCY INTERNATIONAL STOREFRONT',
     category: 'SHOPIFY MARKETS',
+    filterCategory: 'shopify',
     description: 'Configured Shopify Markets with automated geolocation routing, local currency conversions, and translated liquid schemas.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -185,6 +196,7 @@ const projects: Project[] = [
     number: '12',
     title: 'HIGH-CONVERSION LANDING PAGE SYSTEM',
     category: 'PAGE FLY / REPLO / CUSTOM CODE',
+    filterCategory: 'shopify',
     description: 'Designed standalone, rapid-loading direct response landing pages specifically optimized for paid traffic campaigns.',
     githubUrl: 'https://github.com/henrynyam12-gif',
     mediaType: 'image',
@@ -196,43 +208,25 @@ const projects: Project[] = [
       { label: 'LOAD SPEED', value: 'Instant' },
     ],
   },
-  {
-    number: '13',
-    title: 'AUTOMATED OUTREACH & RETENTION PIPELINE',
-    category: 'COLD EMAIL & REVENUE OPS',
-    description: 'Built technical domain DNS configurations and automated outreach workflows to generate scalable freelance and client leads.',
-    githubUrl: 'https://github.com/henrynyam12-gif',
-    mediaType: 'image',
-    mediaUrl: '/project/project-13.jpg',
-    tech: ['Apollo.io', 'Instantly.ai', 'SPF/DKIM/DMARC', 'DNS'],
-    metrics: [
-      { label: 'DELIVERABILITY', value: '99.2%' },
-      { label: 'REPLY RATE', value: '8.5%' },
-      { label: 'PIPELINE', value: 'Automated' },
-    ],
-  },
 ];
 
 export const ProjectsSection: React.FC = () => {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'shopify' | 'marketing' | 'fullstack'>('all');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const filteredProjects = activeFilter === 'all' 
+    ? projects 
+    : projects.filter(p => p.filterCategory === activeFilter);
+
   return (
     <section
       id="work"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
+      className="relative w-full bg-[#050403] text-[#E8DFD8] font-sans pt-20 pb-32 px-6 sm:px-12 lg:px-20"
     >
-      {/* Studio Ambient Glows */}
-      <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/5 rounded-full blur-[170px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center space-x-4 mb-5"
-        >
+        {/* Section Tag Header */}
+        <div className="flex items-center space-x-4 mb-5">
           <span
             className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -240,17 +234,12 @@ export const ProjectsSection: React.FC = () => {
             02 / FEATURED WORK
           </span>
           <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16"
-        >
+        {/* Section Heading */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12">
           <h2
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
+            className="text-5xl sm:text-6xl md:text-7xl uppercase leading-[0.85] select-none"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
@@ -261,140 +250,193 @@ export const ProjectsSection: React.FC = () => {
             </span>
           </h2>
 
-          <p
-            className="text-xs sm:text-sm font-light text-[#A8988B] max-w-sm mt-4 md:mt-0 leading-relaxed"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            Scroll down to unfold the system architecture cards. Each platform was built to drive high conversions and revenue growth.
-          </p>
+          {/* Interactive Filter Tabs */}
+          <div className="flex flex-wrap gap-2 mt-6 lg:mt-0">
+            {[
+              { id: 'all', label: 'ALL PROJECTS' },
+              { id: 'shopify', label: 'SHOPIFY & LIQUID' },
+              { id: 'marketing', label: 'PAID MEDIA' },
+              { id: 'fullstack', label: 'FULL-STACK & AUTOMATION' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id as any)}
+                className={`px-4 py-2 text-[10px] font-mono tracking-[0.2em] uppercase transition-all duration-300 border ${
+                  activeFilter === tab.id
+                    ? 'bg-[#D4AF37] border-[#D4AF37] text-black font-semibold'
+                    : 'bg-[#110E0B] border-[#8C6D4F]/30 text-[#A8988B] hover:border-[#D4AF37] hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Clean Responsive Grid Layout */}
+        <motion.div 
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                key={project.title}
+                onClick={() => setSelectedProject(project)}
+                className="group relative rounded-xl border border-[#8C6D4F]/30 bg-[#0E0C0A] p-5 cursor-pointer hover:border-[#D4AF37] transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  {/* Media Preview Box */}
+                  <div className="relative w-full h-44 rounded-lg overflow-hidden border border-[#8C6D4F]/30 bg-[#14100D] mb-4">
+                    {project.mediaType === 'video' ? (
+                      <video
+                        src={project.mediaUrl}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      />
+                    ) : (
+                      <img
+                        src={project.mediaUrl}
+                        alt={project.title}
+                        className="w-full h-full object-cover opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      />
+                    )}
+                    <span className="absolute top-3 left-3 px-2 py-1 bg-black/80 text-[#D4AF37] font-mono text-[9px] tracking-wider rounded">
+                      {project.number}
+                    </span>
+                  </div>
+
+                  {/* Info */}
+                  <span className="text-[9.5px] font-mono tracking-[0.2em] text-[#A8988B] uppercase block mb-1">
+                    {project.category}
+                  </span>
+                  
+                  <h3
+                    className="text-2xl font-normal text-white group-hover:text-[#F7E7C4] transition-colors uppercase leading-none mb-3"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs text-[#BDB0A4] line-clamp-2 leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Tech Tags & CTA */}
+                <div>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.tech.slice(0, 3).map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 text-[9px] font-mono border border-[#8C6D4F]/30 bg-[#16120E] text-[#E8D7C5]"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between pt-3 border-t border-[#8C6D4F]/20 text-[10px] font-mono text-[#D4AF37]">
+                    <span>INSPECT DETAILS</span>
+                    <span>→</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
 
-        {/* ScrollStack Deck */}
-        <ScrollStack
-          itemDistance={20}
-          itemScale={0.035}
-          itemStackDistance={28}
-          stackPosition="15%"
-          scaleEndPosition="6%"
-          baseScale={0.88}
-          useWindowScroll={true}
-        >
-          {projects.map((project) => (
-            <ScrollStackItem key={project.title}>
-              <div className="relative w-full rounded-2xl border border-[#8C6D4F]/50 bg-[#0E0C0A] p-6 sm:p-10 shadow-[0_25px_70px_rgba(0,0,0,0.98)] group overflow-hidden transition-colors duration-500 hover:border-[#D4AF37]">
-                
-                {/* Gold Glow Borders */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#D4AF37]/60 group-hover:border-[#D4AF37] transition-colors" />
-
-                <span
-                  className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+        {/* Detailed Modal Overlay */}
+        <AnimatePresence>
+          {selectedProject && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedProject(null)}
+              className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-3xl rounded-2xl border border-[#D4AF37] bg-[#0E0C0A] p-6 sm:p-8 max-h-[90vh] overflow-y-auto"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full border border-[#8C6D4F] text-[#E8DFD8] hover:border-[#D4AF37] flex items-center justify-center text-xs"
                 >
-                  {project.number}
+                  ✕
+                </button>
+
+                <span className="text-xs font-mono text-[#D4AF37] block mb-1">
+                  {selectedProject.number} // {selectedProject.category}
                 </span>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-                  
-                  {/* Left Column */}
-                  <div className="lg:col-span-7 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center space-x-3 mb-4">
-                        <span className="text-xs font-mono font-bold text-[#D4AF37]">
-                          {project.number} //
-                        </span>
-                        <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#A8988B]">
-                          {project.category}
-                        </span>
-                      </div>
+                <h3
+                  className="text-4xl sm:text-5xl font-normal text-white mb-4 uppercase"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                >
+                  {selectedProject.title}
+                </h3>
 
-                      <h3
-                        className="text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white mb-4 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[0.9]"
-                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                      >
-                        {project.title}
-                      </h3>
-
-                      <p
-                        className="text-xs sm:text-sm md:text-[14px] font-light text-[#BDB0A4] leading-[1.85] tracking-wide mb-6 max-w-2xl"
-                        style={{ fontFamily: "'Montserrat', sans-serif" }}
-                      >
-                        {project.description}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 pt-4 border-t border-[#8C6D4F]/25 mb-6 lg:mb-0">
-                      {project.tech.map((t) => (
-                        <span
-                          key={t}
-                          className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#16120E] text-[#E8D7C5]"
-                          style={{ fontFamily: "'Montserrat', sans-serif" }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Media Preview & Metrics */}
-                  <div className="lg:col-span-5 flex flex-col justify-between space-y-6 lg:pl-6 lg:border-l lg:border-[#8C6D4F]/25">
-                    
-                    <div className="relative w-full h-48 sm:h-56 rounded-lg overflow-hidden border border-[#8C6D4F]/40 bg-[#14100D] group-hover:border-[#D4AF37]/80 transition-all">
-                      {project.mediaType === 'video' ? (
-                        <video
-                          src={project.mediaUrl}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 transition-opacity"
-                        />
-                      ) : (
-                        <img
-                          src={project.mediaUrl}
-                          alt={project.title}
-                          className="w-full h-full object-cover object-top opacity-85 group-hover:scale-105 group-hover:opacity-100 transition-all duration-500"
-                        />
-                      )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0A] via-transparent to-transparent opacity-40 pointer-events-none" />
-                    </div>
-
-                    <div className="space-y-2">
-                      {project.metrics.map((m) => (
-                        <div
-                          key={m.label}
-                          className="p-2.5 rounded-sm border border-[#8C6D4F]/25 bg-[#050403] flex items-center justify-between"
-                        >
-                          <span className="text-[10px] font-mono text-[#A8988B]">
-                            {m.label}
-                          </span>
-                          <span className="text-[11px] font-mono font-medium text-[#F7E7C4]">
-                            {m.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center space-x-3 px-6 py-3 border border-[#8C6D4F] bg-[#16120E] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#EAD8C7] hover:text-black text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
-                    >
-                      <span>VIEW ON GITHUB</span>
-                      <span className="text-xs">↗</span>
-                    </a>
-                  </div>
-
+                {/* Media Preview inside Modal */}
+                <div className="w-full h-64 sm:h-80 rounded-xl overflow-hidden border border-[#8C6D4F]/40 bg-[#14100D] mb-6">
+                  {selectedProject.mediaType === 'video' ? (
+                    <video
+                      src={selectedProject.mediaUrl}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={selectedProject.mediaUrl}
+                      alt={selectedProject.title}
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
-              </div>
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+
+                <p className="text-sm text-[#BDB0A4] leading-relaxed mb-6">
+                  {selectedProject.description}
+                </p>
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                  {selectedProject.metrics.map((m) => (
+                    <div key={m.label} className="p-3 rounded border border-[#8C6D4F]/30 bg-[#050403]">
+                      <span className="text-[9px] font-mono text-[#A8988B] block">{m.label}</span>
+                      <span className="text-xs font-mono font-bold text-[#F7E7C4]">{m.value}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center w-full py-3 border border-[#8C6D4F] bg-[#16120E] hover:bg-[#D4AF37] hover:text-black text-xs font-mono tracking-widest uppercase transition-all"
+                >
+                  VIEW SOURCE ON GITHUB ↗
+                </a>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       </div>
     </section>
   );
