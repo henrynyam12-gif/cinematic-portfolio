@@ -118,7 +118,7 @@ export const HeroSection: React.FC = () => {
             className="text-xs sm:text-sm font-semibold tracking-[0.35em] uppercase text-[#EAD8C7] hover:opacity-75 transition-opacity"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            LOHITHA.
+            Henry
           </a>
 
           {/* Navigation Links */}
@@ -178,12 +178,12 @@ export const HeroSection: React.FC = () => {
 
                 {/* Line 2: DIGITAL */}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
-                  DIGITAL
+                  HIGH-CONVERTING
                 </span>
 
                 {/* Line 3: EXPERIENCES */}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410] drop-shadow-[0_10px_30px_rgba(155,118,64,0.4)]">
-                  EXPERIENCES
+                  SHOPIFY STORESss
                 </span>
               </h1>
             </motion.div>
@@ -194,7 +194,7 @@ export const HeroSection: React.FC = () => {
                 className="text-[10px] sm:text-[11px] md:text-xs font-normal tracking-[0.28em] uppercase text-[#C4B29E]"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                FULL STACK DEVELOPER <span className="text-[#8C6D4F] mx-1">•</span> UI/UX DESIGNER <span className="text-[#8C6D4F] mx-1">•</span> DATA SCIENCE
+                SHOPIFY DEVELOPER <span className="text-[#8C6D4F] mx-1">•</span> THEME CUSTOMIZATION/ THEME LIQUID/HTML AND CSS FULL STACK DEVELOPER <span className="text-[#8C6D4F] mx-1">•</span> DATA SCIENCE
               </p>
             </motion.div>
 
@@ -205,9 +205,9 @@ export const HeroSection: React.FC = () => {
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <p>
-                I turn bold ideas into seamless digital experiences.
+                I build high converting shopify stores and run data driven marketing campaigns that help businesses grow and scale.
                 <br />
-                Where frontend meets powerful backend, and code transforms vision into impact.
+                Where custom liquid code meets target paid media to scale ecommerce brands.
               </p>
             </motion.div>
 
@@ -267,8 +267,8 @@ export const HeroSection: React.FC = () => {
               className="text-[9.5px] font-medium tracking-[0.24em] uppercase text-[#E0D3C5] space-y-1 mb-3"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              <p>CODE IS MY CRAFT.</p>
-              <p>IMPACT IS MY GOAL.</p>
+              <p>SHOPIFY DEVELOPMENT IS MY CRAFT.</p>
+              <p>GIVING RESULTS IS MY GOAL.</p>
             </div>
 
             {/* 3. Gold Accent Line */}
@@ -282,7 +282,7 @@ export const HeroSection: React.FC = () => {
                 letterSpacing: '0.04em',
               }}
             >
-              Lohitha
+              Henry
             </div>
           </motion.div>
         </div>

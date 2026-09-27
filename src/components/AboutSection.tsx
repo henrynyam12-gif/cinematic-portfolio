@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import aboutImg from '../assets/about.png';
+import aboutImg from '../assets/about.jpg'// or <div className="jpg"></div>;
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -120,10 +120,10 @@ export const AboutSection: React.FC = () => {
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_10px_rgba(0,0,0,0.85)]">
-                  I DON'T JUST WRITE CODE.
+                  I DON'T JUST BUILD STORES, I BUILD SUCCESS.
                 </span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.3)]">
-                  I BUILD WHAT'S NEXT.
+                  I BUILD HIGH CONVERTING SHOPIFY EXPERINECE .
                 </span>
               </h2>
             </motion.div>
@@ -134,7 +134,7 @@ export const AboutSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-10 max-w-xl"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I'm <span className="text-[#F3DBB3] font-medium">Damisetti Shamya Lohitha</span>, a Full Stack Developer and Data Science student specializing in building scalable web architectures, AI-integrated platforms, and refined digital experiences. With a strong algorithmic foundation and a focus on clean engineering, I turn complex requirements into impactful products.
+              I'm <span className="text-[#F3DBB3] font-medium">HENRY NYAM</span>, a Full Stack Shopify Developer ecommerce Speclialist focused on buildign custom shopify stores and scaling brands through targeted Meta and Tiktok ad campaign campaigns.And data driven strategies.
             </motion.p>
 
             {/* Concise 4-Item Achievement Metrics Grid */}
@@ -148,10 +148,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#F4EBE2] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  1200+
+                  200+
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  DSA Solved
+                  Shopify stores built
                 </span>
               </div>
 
@@ -161,10 +161,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  9.07
+                  9/10
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  B.Tech CGPA
+                  Client Satisfaction score
                 </span>
               </div>
 
@@ -177,7 +177,7 @@ export const AboutSection: React.FC = () => {
                   40+
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Industry-Grade Projects
+                  client worked with
                 </span>
               </div>
 
@@ -187,10 +187,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Top 100
+                  ROAS
                 </span>
                 <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Myntra Hackerramp
+                  3X-5X Return on ad spend
                 </span>
               </div>
             </motion.div>
@@ -285,7 +285,7 @@ export const AboutSection: React.FC = () => {
                     className="text-3xl text-[#F2D8A7] drop-shadow-[0_0_12px_rgba(242,216,167,0.5)] transition-colors duration-300 group-hover:text-white"
                     style={{ fontFamily: "'Herr Von Muellerhoff', cursive" }}
                   >
-                    Lohitha
+                    HENRY
                   </span>
                 </div>
               </div>
