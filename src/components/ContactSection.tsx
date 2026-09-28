@@ -1,4 +1,3 @@
-// src/components/ContactSection.tsx
 import React, { useState } from 'react';
 
 export const ContactSection: React.FC = () => {
@@ -12,6 +11,10 @@ export const ContactSection: React.FC = () => {
   const recipientEmail = 'henrynyam12@gmail.com';
   // Formatted WhatsApp URL for +1 (909) 859-1449
   const whatsappUrl = 'https://wa.me/19098591449?text=' + encodeURIComponent(`Hi Henry, I'm reaching out from your portfolio regarding ${problemType}.`);
+
+  // Direct Freelance Platform Links
+  const freelancerUrl = 'https://www.freelancer.com/u/henryn45?sb=t';
+  const upworkUrl = 'https://www.upwork.com/freelancers/~01d0c4f20f7ac412e5?mp_source=share';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +82,7 @@ export const ContactSection: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Direct Info & WhatsApp */}
+          {/* Left Column: Direct Info & Platforms */}
           <div className="lg:col-span-5 space-y-8">
             <div>
               <h2
@@ -92,7 +95,7 @@ export const ContactSection: React.FC = () => {
                 </span>
               </h2>
               <p className="text-xs sm:text-sm text-[#A8988B] leading-relaxed">
-                Select your service requirements to send an inquiry directly to **henrynyam12@gmail.com**, or initiate a conversation via WhatsApp.
+                Select your service requirements to send an inquiry directly to **henrynyam12@gmail.com**, chat on WhatsApp, or hire me directly through Upwork or Freelancer.com.
               </p>
             </div>
 
@@ -123,6 +126,34 @@ export const ContactSection: React.FC = () => {
                   <span>💬 CHAT ON WHATSAPP (+1 909 859-1449)</span>
                   <span>↗</span>
                 </a>
+              </div>
+
+              {/* Direct Hiring Platforms */}
+              <div className="pt-2">
+                <span className="text-[10px] font-mono text-[#A8988B] uppercase block mb-2">
+                  HIRE DIRECTLY ON FREELANCE PLATFORMS
+                </span>
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href={upworkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-[#0E150E] border border-[#14A800]/40 hover:border-[#14A800] text-[#14A800] text-xs font-mono tracking-wider rounded transition-all"
+                  >
+                    <span>HIRE ON UPWORK</span>
+                    <span>↗</span>
+                  </a>
+
+                  <a
+                    href={freelancerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 px-4 py-2 bg-[#0A1218] border border-[#29B2FE]/40 hover:border-[#29B2FE] text-[#29B2FE] text-xs font-mono tracking-wider rounded transition-all"
+                  >
+                    <span>HIRE ON FREELANCER</span>
+                    <span>↗</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
